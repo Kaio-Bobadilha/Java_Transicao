@@ -1,0 +1,18 @@
+# Framework principal
+Django==5.1.2
+
+# API REST e autenticação
+djangorestframework==3.15.2
+djangorestframework-simplejwt==5.3.1
+djoser==2.3.0
+
+# Filtros, documentação e geração automática de CRUD
+django-filter==24.3
+drf-spectacular==0.27.2
+django-api-generator==1.0.5
+
+# Banco de dados (PostgreSQL)
+psycopg2-binary==2.9.9
+
+# Utilitários opcionais
+python-dotenv==1.0.1
