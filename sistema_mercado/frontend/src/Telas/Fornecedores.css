@@ -1,0 +1,228 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+body {
+    background-color: #f4f7f9; 
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.customer-screen-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.header-actions-wrapper {
+    margin-bottom: 25px;
+}
+
+.header-actions-controls {
+    margin-bottom: 15px; 
+}
+
+.header-actions-content {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.screen-title {
+  color: #1e3a8a; 
+  margin: 0; 
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.btn-back {
+    padding: 8px 15px;
+    background-color: #e5e7eb; 
+    color: #4b5563;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-back:hover {
+    background-color: #d1d5db;
+}
+
+.btn-new.btn-header {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #10b981;
+}
+
+.tabs-container {
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 25px;
+  display: flex;
+}
+.tabs-container.single-tab-only {
+    border-bottom: none; 
+    margin-bottom: 5px; 
+}
+
+.tab-item {
+  padding: 10px 15px;
+  border: none;
+  background-color: transparent;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.tab-item.active {
+    color: #374151; 
+    font-weight: 400;
+    padding-left: 0; 
+    cursor: default;
+}
+
+.search-bar-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.search-input {
+  flex-grow: 1;
+  padding: 12px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.search-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 20px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.table-wrapper {
+    overflow-x: auto; 
+}
+
+.customer-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden; 
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.customer-table th {
+  background-color: #f9fafb; 
+  color: #4b5563;
+  padding: 14px 15px;
+  text-align: left;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.customer-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+.empty-message {
+    padding: 30px;
+    text-align: center;
+    color: #6b7280;
+    font-size: 1.1rem;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.table-row {
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.table-row:nth-child(even) {
+  background-color: #f3f4f6;
+}
+
+.table-row:hover {
+  background-color: #e0f2fe; 
+}
+
+.table-row.selected-row {
+    background-color: #bfdbfe; 
+    font-weight: 600;
+}
+
+.table-action-button {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    background-color: #ffffff;
+    color: #374151;
+}
+
+.action-buttons-container {
+    display: flex;
+    justify-content: flex-start; 
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.action-btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-new {
+  background-color: #10b981; 
+  color: white;
+}
+.btn-new:hover { background-color: #059669; }
+
+.btn-save {
+  background-color: #3b82f6;
+  color: white;
+}
+.btn-save:hover { background-color: #2563eb; }
+
+.btn-edit {
+    background-color: #fcd34d; 
+    color: #92400e;
+}
+.btn-edit:hover { background-color: #facc15; }
+
+.btn-delete {
+  background-color: #fca5a5; 
+  color: #991b1b; 
+}
+.btn-delete:hover { background-color: #f87171; }
+
+.action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
