@@ -1,4 +1,5 @@
-const MOCK_PRODUTOS = [
+    // dados aleatorios
+let MOCK_PRODUTOS = [
     {
         codigo: 1,
         descricao: "Monitor LED 24\" Ultrawide",

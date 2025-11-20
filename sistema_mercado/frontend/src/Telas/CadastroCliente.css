@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+.clientes-screen-container {
+  max-width: 1000px; 
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Inter', sans-serif;
+}
+
+.clientes-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.clientes-title {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.clientes-btn-back {
+    padding: 8px 15px;
+    background-color: #e5e7eb; 
+    color: #4b5563; 
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.clientes-btn-back:hover {
+    background-color: #d1d5db;
+}
+
+.clientes-form-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px;
+}
+
+.clientes-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.clientes-form-group.span-4 {
+    grid-column: span 4;
+}
+.clientes-form-group.span-3 {
+    grid-column: span 3;
+}
+.clientes-form-group.span-2 {
+    grid-column: span 2;
+}
+
+
+.clientes-form-group label {
+    font-size: 0.9rem;
+    color: #374151;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.clientes-form-group input,
+.clientes-form-group select {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.clientes-form-group:nth-child(5) { 
+    grid-column: span 2;
+}
+.clientes-form-group:nth-child(6), 
+.clientes-form-group:nth-child(7) { 
+    grid-column: span 1;
+}
+
+.clientes-action-buttons {
+    display: flex;
+    justify-content: flex-start; 
+    gap: 15px;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.clientes-btn-save {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  background-color: #10b981; 
+  color: white;
+}
+
+.clientes-btn-save:hover {
+    background-color: #059669;
+}
+
+
+.clientes-feedback-message {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #d1fae5; 
+    color: #065f46; 
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid #a7f3d0;
+}

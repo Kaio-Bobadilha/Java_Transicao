@@ -5,7 +5,7 @@ const HeaderActions = () => {
   const navigate = useNavigate();
 
   const handleAddFornecedor = () => {
-    navigate('/AdicionarFornecedor');
+    navigate('/CadastroFornecedores');
   };
   
   const handleGoBack = () => {

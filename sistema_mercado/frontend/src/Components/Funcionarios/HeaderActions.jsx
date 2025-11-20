@@ -5,7 +5,7 @@ const HeaderActions = ({ onNew }) => {
   const navigate = useNavigate();
 
   const handleAddFuncionario = () => {
-    navigate('/AdicionarFuncionario'); 
+    navigate('/CadastroFuncionarios'); 
   };
   
   const handleGoBack = () => {

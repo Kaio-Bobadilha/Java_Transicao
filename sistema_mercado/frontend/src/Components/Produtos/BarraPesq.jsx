@@ -1,7 +1,7 @@
 import React from 'react';
 
 const BarraPesq = ({ searchTerm, setSearchTerm, placeholderText }) => {
-  const defaultPlaceholder = "Buscar funcionário pelo Nome ou CPF...";
+  const defaultPlaceholder = "Buscar produto pelo nome...";
 
   return (
     <div className="search-bar-container">

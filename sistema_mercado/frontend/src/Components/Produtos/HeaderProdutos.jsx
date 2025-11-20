@@ -10,7 +10,7 @@ const HeaderProdutos = () => {
   };
   
   const handleAddProduto = () => {
-    alert('Navegar para a tela de Cadastro de Produtos.');
+    navigate('/CadastroProdutos'); 
   };
 
   return (
@@ -32,10 +32,6 @@ const HeaderProdutos = () => {
           >
             ➕ Novo Produto
           </button>
-      </div>
-      
-      <div className="produtos-tabs-container produtos-single-tab-only">
-        <button className="produtos-tab-item produtos-tab-active">Lista de Produtos</button>
       </div>
     </div>
   );

@@ -1,11 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import CadastroClientes from '../../Telas/CadastroCliente';
 
 const HeaderActions = () => {
   const navigate = useNavigate();
 
   const handleAddCliente = () => {
-    navigate('/NovoCliente'); 
+    navigate('/CadastroCliente'); 
   };
   
   const handleGoBack = () => {
