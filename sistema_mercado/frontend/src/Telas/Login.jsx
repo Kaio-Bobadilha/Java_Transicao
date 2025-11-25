@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../App.css'; 
+import '../App.css';
+import api from '../services/api';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -10,7 +11,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setMessage('');
@@ -27,6 +28,22 @@ const Login = () => {
         setIsError(true);
       }
     }, 2000);
+  
+    try {
+      const response = await api.post('token/',{
+        username: email,
+        password: password
+      });
+
+      localStorage.setItem('token', response.data.access);
+
+      navigate('/home');
+    } catch (error) {
+      setIsError(true);
+      setMessage("Erro ao fazer login. Verifique suas credenciais.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

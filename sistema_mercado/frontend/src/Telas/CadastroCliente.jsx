@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import api from '../services/api';
 import './CadastroCliente.css'; 
 
 function CadastroClientes() {
@@ -7,7 +8,7 @@ function CadastroClientes() {
   const [feedback, setFeedback] = useState('');
   
   const [formData, setFormData] = useState({
-      codigo: '', nome: '', rg: '', cpf: '', email: '', 
+      nome: '', rg: '', cpf: '', email: '', 
       celular: '', telefone: '', cep: '', endereco: '', 
       numero: '', complemento: '', bairro: '', cidade: '', uf: 'PR'
   });
@@ -17,9 +18,19 @@ function CadastroClientes() {
       setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSalvar = (e) => {
+  const handleSalvar = async (e) => {
     e.preventDefault();
-    setFeedback('Cliente adicionado');
+    try {
+      await api.post('clientes/', formData);
+      setFeedback('Cliente adicionado com sucesso');
+      setFormData({
+        nome: '', rg: '', cpf: '', email: '', 
+        celular: '', telefone: '', cep: '', endereco: '', 
+        numero: '', complemento: '', bairro: '', cidade: '', uf: 'PR'
+      });
+    } catch (error) {
+      setFeedback('Erro ao adicionar cliente');
+    }
   };
 
   const handleGoBack = () => {
@@ -50,17 +61,12 @@ function CadastroClientes() {
       <form onSubmit={handleSalvar}>
         <div className="clientes-form-grid">
             
-            <div className="clientes-form-group">
-                <label htmlFor="codigo">Código:</label>
-                <input type="text" id="codigo" name="codigo" value={formData.codigo} onChange={handleChange} />
-            </div>
             <div className="clientes-form-group span-3" style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-end', gap: '10px' }}>
                 <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                     <label htmlFor="nome">Nome:</label>
                     <input type="text" id="nome" name="nome" value={formData.nome} onChange={handleChange} required />
                 </div>
             </div>
-
 
             <div className="clientes-form-group span-2">
                 <label htmlFor="email">E-mail:</label>

@@ -1,28 +1,39 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import BarraPesq from '../Components/Clientes/BarraPesq';
 import CustomTable from '../Components/Clientes/CustomTable';
 import ActionButtons from '../Components/Clientes/ActionButtons';
-import MOCK_CUSTOMERS from '../Components/mockCustomers'; 
-import './Cliente.css';
 import HeaderActions from '../Components/Clientes/HeaderActions';
+import api from '../services/api';
+import './Cliente.css';
 
 function PesquisaClientes() {
+  const [clientes, setClientes] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCustomer, setSelectedCustomer] = useState(null);
 
+  useEffect(() => {
+    api.get('clientes/')
+      .then(response => {
+        setClientes(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+
   const filteredCustomers = useMemo(() => {
-    if (!searchTerm) return MOCK_CUSTOMERS;
+    if (!searchTerm) return clientes;
     const lowerCaseSearch = searchTerm.toLowerCase();
     
-    return MOCK_CUSTOMERS.filter(customer =>
+    return clientes.filter(customer =>
       customer.nome.toLowerCase().includes(lowerCaseSearch) ||
       customer.cpf.includes(searchTerm)
     );
-  }, [searchTerm]);
+  }, [searchTerm, clientes]);
 
   return (
     <div className="customer-screen-container">
-    <HeaderActions />
+      <HeaderActions />
       
       <div className="tabs-container">
         <button className="tab-item active">Consulta de Clientes</button>
@@ -39,7 +50,7 @@ function PesquisaClientes() {
         selectedCustomer={selectedCustomer}
       />
 
-  <ActionButtons selectedCustomer={selectedCustomer} hideNewButton={true} />
+      <ActionButtons selectedCustomer={selectedCustomer} hideNewButton={true} />
     </div>
   );
 }
