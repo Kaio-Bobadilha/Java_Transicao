@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+.vendas-screen-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Inter', sans-serif;
+}
+.vendas-header-wrapper {
+    margin-bottom: 25px;
+}
+
+.vendas-header-controls {
+    margin-bottom: 15px; 
+}
+
+.vendas-header-content {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.vendas-screen-title {
+  color: #1e3a8a; 
+  margin: 0; 
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.vendas-tabs-container {
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 25px;
+  display: flex;
+}
+.vendas-single-tab-only {
+    border-bottom: none; 
+    margin-bottom: 5px; 
+}
+
+.vendas-tab-item {
+  padding: 10px 15px;
+  border: none;
+  background-color: transparent;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.vendas-tab-item.vendas-tab-active {
+    color: #374151; 
+    font-weight: 400;
+    padding-left: 0; 
+    cursor: default;
+}
+
+.vendas-filtro-container {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 20px;
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #f9fafb;
+}
+
+.vendas-filtro-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px; 
+    flex-grow: 1;
+}
+
+.vendas-filtro-group label {
+    font-size: 0.85rem;
+    color: #4b5563;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.vendas-filtro-input {
+  padding: 10px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.vendas-table-wrapper {
+    overflow-x: auto; 
+}
+
+.vendas-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden; 
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.vendas-table th {
+  background-color: #e5e7eb; /* Cor de header mais clara/verde */
+  color: #4b5563;
+  padding: 14px 15px;
+  text-align: left;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.vendas-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+.vendas-empty-message {
+    padding: 30px;
+    text-align: center;
+    color: #6b7280;
+    font-size: 1.1rem;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.vendas-table-row {
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.vendas-table-row:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.vendas-table-row:hover {
+  background-color: #dae9fb; 
+} 
+
+.vendas-selected-row {
+    background-color: #bfdbfe;
+    font-weight: 600;
+}
+
+.vendas-action-buttons-container {
+    display: flex;
+    justify-content: flex-start; 
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.vendas-action-btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.vendas-btn-back {
+    padding: 8px 15px;
+    background-color: #e5e7eb; 
+    color: #4b5563; 
+    font-weight: 500;
+}
+
+.vendas-btn-back:hover {
+    background-color: #d1d5db;
+}
+
+.vendas-btn-new.vendas-btn-header {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #10b981;
+    color: white;
+}
+
+.vendas-btn-edit {
+  background-color: #fcd34d; 
+  color: #92400e;
+}
+
+.vendas-btn-delete {
+  background-color: #f87171; 
+  color: #7f1d1d; 
+}
+
+.vendas-action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
