@@ -1,3 +1,5 @@
+import os 
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -74,7 +76,7 @@ DATABASES = {
         'NAME': 'mercado',
         'USER': 'postgres',
         'PASSWORD': 'admin',
-        'HOST': 'localhost',
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
         'PORT': '5432',
     }
 }
