@@ -16,3 +16,4 @@ psycopg2-binary==2.9.9
 
 # Utilitários opcionais
 python-dotenv==1.0.1
+django-cors-headers

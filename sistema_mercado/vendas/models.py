@@ -4,7 +4,6 @@ from produtos.models import Produto
 
 class Venda(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    funcionario = models.ForeignKey(Funcionario, on_delete=models.CASCADE)
     data_venda = models.DateTimeField(auto_now_add=True)
     total_venda = models.DecimalField(max_digits=10, decimal_places=2)
     observacoes = models.TextField(blank=True)

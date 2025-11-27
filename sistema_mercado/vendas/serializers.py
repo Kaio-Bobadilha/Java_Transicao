@@ -1,65 +1,92 @@
 from rest_framework import serializers
 from .models import Venda, ItemVenda
 from produtos.models import Produto
-from django.db import transaction 
+from produtos.serializers import ProdutoSerializer
+from pessoas.serializers import ClienteSerializer, FuncionarioSerializer
 
+
+# ------------------------
+# SERIALIZER DE ITENS (LEITURA)
+# ------------------------
 class ItemVendaSerializer(serializers.ModelSerializer):
+    produto = ProdutoSerializer(read_only=True)
+
     class Meta:
         model = ItemVenda
-        fields = ['id', 'produto', 'qtd'] 
-        read_only_fields = ('id', 'subtotal') # 'subtotal' é apenas para leitura
+        fields = ['id', 'produto', 'qtd', 'subtotal']
 
+
+# ------------------------
+# SERIALIZER DE VENDA (LEITURA)
+# ------------------------
 class VendaSerializer(serializers.ModelSerializer):
-    itens = ItemVendaSerializer(many=True)
+    cliente = ClienteSerializer(read_only=True)
+    itens = ItemVendaSerializer(many=True, read_only=True)
 
     class Meta:
         model = Venda
-        # O usuário envia 'cliente' e 'itens'
-        # 'funcionario', 'data_venda' e 'total_venda' serão definidos pelo sistema
-        fields = ['id', 'cliente', 'funcionario', 'data_venda', 'total_venda', 'observacoes', 'itens']
-        read_only_fields = ('id', 'funcionario', 'data_venda', 'total_venda')
+        fields = [
+            'id',
+            'cliente',
+            'data_venda',
+            'total_venda',
+            'observacoes',
+            'itens'
+        ]
+
+
+# ------------------------
+# SERIALIZER PARA CRIAÇÃO DE VENDA (POST)
+# ------------------------
+class ItemVendaCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ItemVenda
+        fields = ['produto', 'qtd']
+
+
+class VendaCreateSerializer(serializers.ModelSerializer):
+    itens = ItemVendaCreateSerializer(many=True)
+
+    class Meta:
+        model = Venda
+        fields = ['cliente', 'observacoes', 'itens']
 
     def create(self, validated_data):
-        # Pegar dados
         itens_data = validated_data.pop('itens')
-        funcionario_logado = self.context['request'].user.funcionario
-        
-        total_venda_calculado = 0
-        itens_para_criar = []
-        produtos_para_atualizar = []
 
-        # Loop de validacao e calculo
-        for item_data in itens_data:
-            produto = item_data['produto']
-            qtd_pedida = item_data['qtd']
+        total_venda = 0
+        itens_salvar = []
+        produtos_atualizar = []
 
-            # 4. Verificar estoque
-            if qtd_pedida > produto.qtd_estoque:
+        for item in itens_data:
+            produto = item['produto']
+            qtd = item['qtd']
+
+            if qtd > produto.qtd_estoque:
                 raise serializers.ValidationError(
                     f"Estoque insuficiente para {produto.descricao}. Disponível: {produto.qtd_estoque}"
                 )
-            
-            # Regras de negocios
-            subtotal_calculado = qtd_pedida * produto.preco
-            item_data['subtotal'] = subtotal_calculado
-            total_venda_calculado += subtotal_calculado
-            
-            produto.qtd_estoque -= qtd_pedida
-            produtos_para_atualizar.append(produto)
-            itens_para_criar.append(item_data)
 
-        # Salvamento de venda
+            subtotal = qtd * produto.preco
+            total_venda += subtotal
+
+            produto.qtd_estoque -= qtd
+            produtos_atualizar.append(produto)
+
+            itens_salvar.append({
+                "produto": produto,
+                "qtd": qtd,
+                "subtotal": subtotal
+            })
+
         venda = Venda.objects.create(
-            **validated_data, 
-            total_venda=total_venda_calculado,
-            funcionario=funcionario_logado
+            total_venda=total_venda,
+            **validated_data
         )
 
-        # Atualiza itens da venda
-        for item_data in itens_para_criar:
-            ItemVenda.objects.create(venda=venda, **item_data)
-            
-        # Atualiza o estoque de todos os produtos
-        Produto.objects.bulk_update(produtos_para_atualizar, ['qtd_estoque'])
+        for item in itens_salvar:
+            ItemVenda.objects.create(venda=venda, **item)
+
+        Produto.objects.bulk_update(produtos_atualizar, ['qtd_estoque'])
 
         return venda
